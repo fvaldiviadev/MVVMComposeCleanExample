@@ -1,7 +1,7 @@
-package usecase
+package com.fvaldiviadev.domain.usecase
 
-import CharacterRepository
-import model.CharacterRickMorty
+import com.fvaldiviadev.domain.model.CharacterRickMorty
+import com.fvaldiviadev.domain.repository.CharacterRepository
 
 class GetCharactersUseCase(
     private val repository: CharacterRepository

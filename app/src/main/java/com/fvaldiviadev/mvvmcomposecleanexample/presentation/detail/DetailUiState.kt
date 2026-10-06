@@ -1,6 +1,6 @@
 package com.fvaldiviadev.mvvmcomposecleanexample.presentation.detail
 
-import model.CharacterRickMorty
+import com.fvaldiviadev.domain.model.CharacterRickMorty
 
 data class DetailUiState(
     val character: CharacterRickMorty? = null,

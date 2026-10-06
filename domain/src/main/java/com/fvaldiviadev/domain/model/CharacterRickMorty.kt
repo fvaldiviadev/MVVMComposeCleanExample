@@ -1,4 +1,4 @@
-package model
+package com.fvaldiviadev.domain.model
 
 data class CharacterRickMorty(
     val id: Int,

@@ -1,6 +1,6 @@
 package com.fvaldiviadev.mvvmcomposecleanexample.presentation.main
 
-import model.CharacterRickMorty
+import com.fvaldiviadev.domain.model.CharacterRickMorty
 
 data class MainUiState(
     val isLoading: Boolean = false,

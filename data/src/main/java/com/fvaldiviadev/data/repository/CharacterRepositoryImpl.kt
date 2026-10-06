@@ -1,9 +1,9 @@
 package com.fvaldiviadev.data.repository
 
-import CharacterRepository
 import com.fvaldiviadev.data.mapper.toDomain
 import com.fvaldiviadev.data.remote.Api
-import model.CharacterRickMorty
+import com.fvaldiviadev.domain.model.CharacterRickMorty
+import com.fvaldiviadev.domain.repository.CharacterRepository
 
 class CharacterRepositoryImpl(
     private val api: Api

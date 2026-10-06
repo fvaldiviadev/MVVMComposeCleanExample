@@ -1,7 +1,7 @@
 package com.fvaldiviadev.data.mapper
 
 import com.fvaldiviadev.data.model.CharacterDto
-import model.CharacterRickMorty
+import com.fvaldiviadev.domain.model.CharacterRickMorty
 
 fun CharacterDto.toDomain(): CharacterRickMorty {
     return CharacterRickMorty(

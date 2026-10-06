@@ -1,18 +1,23 @@
 package com.fvaldiviadev.mvvmcomposecleanexample.presentation.detail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import usecase.GetCharacterDetailUseCase
+import com.fvaldiviadev.domain.usecase.GetCharacterDetailUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class DetailViewModel(
+@HiltViewModel
+class DetailViewModel @Inject constructor(
     private val getCharacterDetailUseCase: GetCharacterDetailUseCase,
-    private val characterId: Int
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
+    private val characterId: Int = savedStateHandle.get<Int>("CHARACTER_ID") ?: -1
     private val _uiState = MutableStateFlow(DetailUiState())
     val uiState: StateFlow<DetailUiState> = _uiState.asStateFlow()
 
