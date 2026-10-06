@@ -28,6 +28,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -35,6 +40,25 @@ fun MainScreen(
     viewModel: MainViewModel,
     onNavigateToDetail: (Int) -> Unit
 ) {
+    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
+
+    DisposableEffect(lifecycleOwner) {
+        val observer = LifecycleEventObserver { _, event ->
+            // Escuchamos el evento exacto de ON_RESUME
+            if (event == Lifecycle.Event.ON_RESUME) {
+                viewModel.loadCharacters()
+            }
+        }
+
+        // Añadimos el observador
+        lifecycleOwner.lifecycle.addObserver(observer)
+
+        // Lo limpiamos cuando la pantalla se destruya para evitar fugas de memoria
+        onDispose {
+            lifecycleOwner.lifecycle.removeObserver(observer)
+        }
+    }
+
     // Aquí observamos el estado. Cada vez que cambie, esta función se vuelve a ejecutar (Recomposition)
     val state by viewModel.uiState.collectAsState()
 

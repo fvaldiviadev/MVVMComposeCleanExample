@@ -12,12 +12,11 @@ class CharacterRepositoryImpl(
     private var cachedCharacters: List<CharacterRickMorty> = emptyList()
 
     override suspend fun getCharacters(): List<CharacterRickMorty> {
-        if (cachedCharacters.isEmpty()) {
-            // Si la caché está vacía, llamamos a la API
-            val response = api.getCharacters()
-            // Mapeamos los DTOs a modelos de dominio y los guardamos
-            cachedCharacters = response.results.map { it.toDomain() }
-        }
+
+        val response = api.getCharacters()
+
+        cachedCharacters = response.results.map { it.toDomain() }
+
         return cachedCharacters
     }
 

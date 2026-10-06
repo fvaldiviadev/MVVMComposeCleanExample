@@ -20,11 +20,7 @@ class MainViewModel @Inject constructor(
     // uiState es público y de solo lectura, la UI solo puede observarlo
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
-    init {
-        loadCharacters()
-    }
-
-    private fun loadCharacters() {
+    fun loadCharacters() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
             try {
